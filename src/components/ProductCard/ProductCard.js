@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useCartActions } from '../../contexts/cart/CartProvider'
 import styles from "./ProductCart.module.css"
 import { toast, ToastContainer } from 'react-toastify';
@@ -11,7 +10,6 @@ function ProductCard({product}) {
     dispatch({type: "ADD_TO_CART", payload: product})
   }
   return (
-    // <Link to={`/product/${product.id}`}>
     <div className={styles.container}>
       <div className={styles.imageContainer}>
         <img src={product.image} alt={product.title} />
@@ -29,7 +27,6 @@ function ProductCard({product}) {
       <ToastContainer />
 
     </div>
-    // </Link>
   ) 
 }
 
