@@ -1,0 +1,18 @@
+.main{
+    width: 100%;
+    padding-top: 50px;
+}
+.products{
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+@media screen and (max-width: 1200px){
+    .products{
+        width: 100%;
+    }
+}
