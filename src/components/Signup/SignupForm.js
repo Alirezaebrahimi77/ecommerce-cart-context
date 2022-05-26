@@ -25,7 +25,6 @@ const onSubmit = async (values) => {
        console.log(data)
     }catch(error){
         console.log(error);
-
     }
 
 }
@@ -46,7 +45,6 @@ const validationSchema = Yup.object({
 })
 
 function SignupForm() {
-    const [error, setError] = useState(null)
 
     const formik = useFormik({
         initialValues,
