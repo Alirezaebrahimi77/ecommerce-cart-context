@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
 import {useCart} from "../../contexts/cart/CartProvider"
+import {Link} from "react-router-dom"
 function Header() {
     const activeStyle = {
         backgroundColor: "#8b5cf6",
@@ -11,7 +12,9 @@ function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <p>Alireza</p>
+        <Link to={"/"}>
+          <p>Alireza</p>
+        </Link>
       </div>
       <nav>
         <ul className={styles.ul}>

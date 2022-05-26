@@ -1,0 +1,38 @@
+.formContainer{
+    width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+.title{
+    text-align: center;
+    margin: 10px;
+    color: #626262;
+}
+.submitButton{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #8b5cf6;
+    color: #fff;
+    cursor: pointer;
+}
+.submitButton:disabled{
+    background-color: lightgray;
+    cursor: not-allowed;
+}
+.signedIn{
+    margin-top: 15px;
+    font-size: .9rem;
+    text-decoration: none;
+    color: #626262;
+}
+.signedIn:hover{
+    text-decoration: underline;
+}
+@media screen and (max-width: 1200px){
+    .formContainer{
+        width: 100%;
+    }
+    
+}

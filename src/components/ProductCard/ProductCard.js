@@ -1,12 +1,10 @@
 import React from 'react'
 import { useCartActions } from '../../contexts/cart/CartProvider'
 import styles from "./ProductCart.module.css"
-import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-function ProductCard({product}) {
+function ProductCard({product, cart, checkInCart}) {
   const dispatch = useCartActions()
   const addProductHandler = (product) => {
-    toast.success(`${product.title} added to the cart`)
     dispatch({type: "ADD_TO_CART", payload: product})
   }
   return (
@@ -20,11 +18,10 @@ function ProductCard({product}) {
         </div>
         <div className={styles.cardFooter}>
           <p>{product.price}$</p>
-          <button className={styles.button} onClick={() => addProductHandler(product)}>Add to cart</button>
+          <button className={styles.button} onClick={() => addProductHandler(product)}>{checkInCart(cart, product.id) ? "In cart" : "Add to cart"}</button>
 
         </div>
       </div>
-      <ToastContainer />
 
     </div>
   ) 
