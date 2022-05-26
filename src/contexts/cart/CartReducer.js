@@ -13,7 +13,8 @@ const CartReducer = (state, action) => {
           updatedCart[index] = updatedItem
          
         }
-        return {...state, cart: updatedCart, total: state.total + action.payload.price}
+        localStorage.setItem("ecommerceCartItems", JSON.stringify(updatedCart))
+        return {...state, cart: updatedCart}
 
       }
 
@@ -26,20 +27,18 @@ const CartReducer = (state, action) => {
 
       if(updatedItem.quantity === 1){
        const filteredCart = updatedCart.filter(item => item.id !== action.payload.id)
-       return {...state, cart: filteredCart, total: state.total - action.payload.price}
+       localStorage.setItem("ecommerceCartItems", JSON.stringify(filteredCart))
+       return {...state, cart: filteredCart}
 
       }else{
         updatedItem.quantity--;
         updatedCart[index] = updatedItem
-        return {...state, cart: updatedCart, total: state.total - action.payload.price}
+        localStorage.setItem("ecommerceCartItems", JSON.stringify(updatedCart))
+        return {...state, cart: updatedCart}
       }
-
-
     }
 
 
-
-        
       default: return state
   }
 }

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Input from "../Input/Input"
 import {useFormik} from "formik"
 import * as Yup from "yup"
 import styles from "./Signup.module.css"
 import {Link} from "react-router-dom"
-
+import { signupUser } from '../../services/signupServices'
 const initialValues = {
     name: "",
     email: "",
@@ -13,8 +13,21 @@ const initialValues = {
     passwordConfirm: ""
 }
 
-const onSubmit = (values) =>{
-    console.log(values);
+const onSubmit = async (values) => {
+    const {name, email, password} = values;
+    const userData = {
+        name, 
+        email,
+        password
+    }
+    try{
+       const {data} = await signupUser(userData)
+       console.log(data)
+    }catch(error){
+        console.log(error);
+
+    }
+
 }
 
 const validationSchema = Yup.object({
@@ -24,10 +37,6 @@ const validationSchema = Yup.object({
     email: Yup.string()
         .email("Invalid email format")
         .required("Email is required"),
-    phoneNumber: Yup.string()
-        .required("Phone Number is required")
-        .matches(/^[0-9]{10}$/, "Invalid Phone Number")
-        .nullable(),
     password: Yup.string()
         .required('No password provided.') 
         .min(8, 'Password is too short - should be 8 chars minimum.')
@@ -37,6 +46,7 @@ const validationSchema = Yup.object({
 })
 
 function SignupForm() {
+    const [error, setError] = useState(null)
 
     const formik = useFormik({
         initialValues,
@@ -47,10 +57,9 @@ function SignupForm() {
   return (
     <div className={styles.formContainer}>
         <h2 className={styles.title}>Sign Up</h2>
-        <form onSubmit={onSubmit} className={styles.form}>
+        <form onSubmit={formik.handleSubmit} className={styles.form}>
             <Input formik={formik} name="name" label="Name" />
             <Input formik={formik} name="email" label="Email" />
-            <Input formik={formik} name="phoneNumber" label="Phone Number" type="tel"/>
             <Input formik={formik} name="password" label="Password" type="password"/>
             <Input formik={formik} name="passwordConfirm" label="Password Confirm" type="password"/>
             <button type='submit' disabled={!formik.isValid} className={styles.submitButton}>

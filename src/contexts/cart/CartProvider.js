@@ -6,8 +6,7 @@ const cartContext = createContext()
 const cartContextDispatcher = createContext()
 
 const initialState = {
-    cart: [],
-    total: 0
+    cart: localStorage.getItem("ecommerceCartItems") ? JSON.parse(localStorage.getItem("ecommerceCartItems")) : []
 }
 
 function CartProvider({children}) {

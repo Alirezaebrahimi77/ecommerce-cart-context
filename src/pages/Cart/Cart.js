@@ -5,8 +5,9 @@ import { useCart, useCartActions } from "../../contexts/cart/CartProvider";
 import StarRatings from "react-star-ratings";
 import {FiTrash} from "react-icons/fi"
 import {Link} from "react-router-dom"
+import {getCartTotal} from "../../utils/getCartTotal"
 function Cart() {
-  const { cart, total } = useCart();
+  const { cart } = useCart();
   const dispatch = useCartActions()
   const incHandler = (product) => {
     dispatch({type: "ADD_TO_CART", payload: product})
@@ -30,12 +31,12 @@ function Cart() {
             
             <div className={styles.cartTotal}>
               <p>Cart total:</p>
-              <p>{total.toFixed(2)}$</p>
+              <p>{getCartTotal(cart)}$</p>
             </div>
             <hr />
             <div className={styles.cartTotal}>
               <p>Cart summary: </p>
-              <p>{total.toFixed(2)}$</p>
+              <p>{getCartTotal(cart)}$</p>
             
             </div>
             <Link to={"/checkout"}>
